@@ -1,5 +1,5 @@
 package ch.zli.m223.service;
 
-public class Entry {
+public class RolleService {
     
 }
