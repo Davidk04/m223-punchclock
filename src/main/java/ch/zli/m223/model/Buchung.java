@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Buchung {
     @Id
@@ -19,6 +21,14 @@ public class Buchung {
 
     @Column(nullable = false)
     private Boolean stornieren;
+
+    @ManyToOne
+    @JsonIgnore
+    private Benutzer benutzer;
+
+    @ManyToOne
+    @JsonIgnore
+    private Raum raum;
 
     public Long getId() {
         return id;
@@ -50,5 +60,21 @@ public class Buchung {
 
     public void setStornieren(Boolean stornieren) {
         this.stornieren = stornieren;
+    }
+
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
+    }
+
+    public Raum getRaum() {
+        return raum;
+    }
+
+    public void setRaum(Raum raum) {
+        this.raum = raum;
     }
 }

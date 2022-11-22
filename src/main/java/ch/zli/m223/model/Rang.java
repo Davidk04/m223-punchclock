@@ -1,8 +1,12 @@
 package ch.zli.m223.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Rang {
@@ -13,6 +17,10 @@ public class Rang {
 
     @Column(nullable = false)
     private String titel;
+
+    @OneToMany(mappedBy = "rang")
+    @JsonIgnore
+    private Set<Benutzer> benutzer;
 
     public Long getId() {
         return id;
