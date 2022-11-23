@@ -22,26 +22,26 @@ import ch.zli.m223.service.RaumService;
 @Tag(name = "Raum", description = "Handhabung von Räumen")
 public class RaumController {
     @Inject
-    RaumService raumService;
+    RaumService service;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)   
     public List<Raum> getRaum() {
-        return raumService.getAll();
+        return service.getAll();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Raum create(Raum raum) {
-        return raumService.makeRaum(raum);
+        return service.makeRaum(raum);
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Raum getOneRaum(@PathParam("id") Long id) {
-            return raumService.GetRaumById(id);
+            return service.GetRaumById(id);
     }
     
     //Works but doesnt return any message
@@ -50,12 +50,12 @@ public class RaumController {
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
-        raumService.deleteRaumById(id);
+        service.deleteRaumById(id);
     }
 
     @PUT
     @Path("/{id}")
     public Raum update(@PathParam("id") Long id, Raum raum){
-            return raumService.updateRaumById(id, raum);
+            return service.updateRaumById(id, raum);
     }
 }

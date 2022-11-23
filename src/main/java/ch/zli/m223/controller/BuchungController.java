@@ -23,26 +23,26 @@ import ch.zli.m223.service.BuchungService;
 public class BuchungController {
 
     @Inject
-    BuchungService buchungService;
+    BuchungService service;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)   
     public List<Buchung> getBuchungen() {
-        return buchungService.getAll();
+        return service.getAll();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Buchung create(Buchung buchung) {
-        return buchungService.makeBuchung(buchung);
+        return service.makeBuchung(buchung);
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Buchung getOneBuchung(@PathParam("id") Long id) {
-            return buchungService.GetBuchungById(id);
+            return service.GetBuchungById(id);
     }
     
     //Works but doesnt return any message
@@ -51,12 +51,12 @@ public class BuchungController {
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
-        buchungService.deleteBuchungById(id);
+        service.deleteBuchungById(id);
     }
 
     @PUT
     @Path("/{id}")
     public Buchung update(@PathParam("id") Long id, Buchung buchung){
-            return buchungService.updateBuchungById(id, buchung);
+            return service.updateBuchungById(id, buchung);
     }
 }
