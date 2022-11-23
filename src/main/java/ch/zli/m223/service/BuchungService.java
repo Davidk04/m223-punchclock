@@ -25,4 +25,9 @@ public class BuchungService {
         entityManager.persist(buchung);
         return buchung;
     }
+
+    public Buchung GetBuchungById(Long id){
+        var suche = entityManager.find(Buchung.class, id);
+        return suche;
+    }
 }
