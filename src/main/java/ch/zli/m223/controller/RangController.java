@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,12 +26,14 @@ public class RangController {
     RangService service;
 
     @GET
+    @RolesAllowed({"admin"})
     @Produces(MediaType.APPLICATION_JSON)   
     public List<Rang> getRang() {
         return service.getAll();
     }
 
     @POST
+    @RolesAllowed({"admin"})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Rang create(Rang rang) {
@@ -38,6 +41,7 @@ public class RangController {
     }
 
     @GET
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Rang getOneRang(@PathParam("id") Long id) {
@@ -46,6 +50,7 @@ public class RangController {
     
     //Works but doesnt return any message
     @DELETE
+    @RolesAllowed({"admin"})
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("/{id}")
@@ -54,6 +59,7 @@ public class RangController {
     }
 
     @PUT
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     public Rang update(@PathParam("id") Long id, Rang rang){
             return service.updateRangById(id, rang);

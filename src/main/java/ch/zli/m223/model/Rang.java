@@ -37,4 +37,12 @@ public class Rang {
     public void setTitel(String titel) {
         this.titel = titel;
     }
+
+    public Set<Benutzer> getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Set<Benutzer> benutzer) {
+        this.benutzer = benutzer;
+    }
 }

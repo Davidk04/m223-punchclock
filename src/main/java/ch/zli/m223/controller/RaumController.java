@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,12 +26,14 @@ public class RaumController {
     RaumService service;
 
     @GET
+    @RolesAllowed({"admin", "mitglied"})
     @Produces(MediaType.APPLICATION_JSON)   
     public List<Raum> getRaum() {
         return service.getAll();
     }
 
     @POST
+    @RolesAllowed({"admin"})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Raum create(Raum raum) {
@@ -38,6 +41,7 @@ public class RaumController {
     }
 
     @GET
+    @RolesAllowed({"admin", "mitglied"})
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Raum getOneRaum(@PathParam("id") Long id) {
@@ -46,6 +50,7 @@ public class RaumController {
     
     //Works but doesnt return any message
     @DELETE
+    @RolesAllowed({"admin"})
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("/{id}")
@@ -54,6 +59,7 @@ public class RaumController {
     }
 
     @PUT
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     public Raum update(@PathParam("id") Long id, Raum raum){
             return service.updateRaumById(id, raum);

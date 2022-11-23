@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -26,12 +27,14 @@ public class RolleController {
     RolleService service;
 
     @GET
+    @RolesAllowed({"admin"})
     @Produces(MediaType.APPLICATION_JSON)   
     public List<Rolle> getRolle() {
         return service.getAll();
     }
 
     @POST
+    @RolesAllowed({"admin"})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Rolle create(Rolle rolle) {
@@ -39,6 +42,7 @@ public class RolleController {
     }
 
     @GET
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Rolle getOneRolle(@PathParam("id") Long id) {
@@ -47,6 +51,7 @@ public class RolleController {
     
     //Works but doesnt return any message
     @DELETE
+    @RolesAllowed({"admin"})
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("/{id}")
@@ -55,6 +60,7 @@ public class RolleController {
     }
 
     @PUT
+    @RolesAllowed({"admin"})
     @Path("/{id}")
     public Rolle update(@PathParam("id") Long id, Rolle rolle){
             return service.updateRolleById(id, rolle);
