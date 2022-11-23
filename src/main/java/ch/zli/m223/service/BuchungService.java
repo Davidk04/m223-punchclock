@@ -36,4 +36,9 @@ public class BuchungService {
         var suche = entityManager.find(Buchung.class, id);
         entityManager.remove(suche);
     }
+
+    @Transactional
+    public Buchung updateBuchungById(Long id, Buchung buchung) {
+        return entityManager.merge(buchung);
+    }
 }
