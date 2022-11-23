@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import ch.zli.m223.model.Buchung;
 
@@ -15,7 +16,13 @@ public class BuchungService {
     EntityManager entityManager;
 
     public List<Buchung> getAll() {
-        var query = entityManager.createQuery("FROM Buchung", Buchung.class);
-        return query.getResultList();
+        var anfrage = entityManager.createQuery("FROM Buchung", Buchung.class);
+        return anfrage.getResultList();
+    }
+
+    @Transactional
+    public Buchung makeBuchung(Buchung buchung) {
+        entityManager.persist(buchung);
+        return buchung;
     }
 }
