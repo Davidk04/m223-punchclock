@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import ch.zli.m223.model.Buchung;
 
+
 @ApplicationScoped
 public class BuchungService {
     @Inject
