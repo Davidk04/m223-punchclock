@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -36,10 +37,19 @@ public class BuchungController {
         return buchungService.makeBuchung(buchung);
     }
 
-    @Path("/{id}")
     @GET
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Buchung getOneBuchung(@PathParam("id") Long id) {
             return buchungService.GetBuchungById(id);
+    }
+    
+    //Works but doesnt return any message
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("/{id}")
+    public void delete(@PathParam("id") Long id) {
+        buchungService.deleteBuchungById(id);
     }
 }

@@ -30,4 +30,10 @@ public class BuchungService {
         var suche = entityManager.find(Buchung.class, id);
         return suche;
     }
+
+    @Transactional
+    public void deleteBuchungById(Long id) {
+        var suche = entityManager.find(Buchung.class, id);
+        entityManager.remove(suche);
+    }
 }
